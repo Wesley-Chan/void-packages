@@ -1,6 +1,6 @@
 # Template file for 'libixion'
 pkgname=libixion
-version=0.17.0
+version=0.18.1
 revision=2
 build_style=gnu-configure
 hostmakedepends="pkg-config python3"
@@ -10,7 +10,8 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="MPL-2.0"
 homepage="https://gitlab.com/ixion/ixion/"
 distfiles="http://kohei.us/files/ixion/src/${pkgname}-${version}.tar.xz"
-checksum=53c97139223f3b786d498f86512a20ee878fab0ef981947647aa116df7c4101e
+# distfiles="${DEBIAN_SITE}/main/libi/libixion/libixion_${version}.orig.tar.gz"
+checksum=ec2327854601d41bd38f151bc94b47ef43f0b8258a551e41e9f5e19b9ad729c1
 replaces="libixion11>=0"
 
 libixion-devel_package() {

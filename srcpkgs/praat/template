@@ -1,6 +1,6 @@
 # Template file for 'praat'
 pkgname=praat
-version=6.2.20
+version=6.3.18
 revision=1
 create_wrksrc=yes
 hostmakedepends="pkg-config"
@@ -10,10 +10,10 @@ checkdepends="cantarell-fonts"
 short_desc="Speech analysis, synthesis, and manipulation"
 maintainer="newbluemoon <blaumolch@mailbox.org>"
 license="GPL-2.0-or-later"
-homepage="http://www.praat.org/"
-changelog="http://www.fon.hum.uva.nl/praat/manual/What_s_new_.html"
+homepage="https://www.fon.hum.uva.nl/praat/"
+changelog="https://www.fon.hum.uva.nl/praat/manual/What_s_new_.html"
 distfiles="https://github.com/praat/praat/archive/v${version}.tar.gz"
-checksum=04c57985afbcda75636e6edb3da79d7b333b45623cdb3ec4bed41f1ea1508055
+checksum=12b57cb9c3acebe25fe6bec93f16b0479d24ed02d30bb49879ec75f6d5145be8
 
 # there are a number of pre-defined Makefiles for certain configurations
 # build options are used to choose which one to use among a selected few
@@ -62,12 +62,6 @@ do_install() {
 
 do_check() {
 	cd "${pkgname}-${version}/test"
-	# remove failing test
-	# Error: Cannot view or edit a TextGrid from batch
-	rm fon/LongSound.praat
-	# fix wrong file name; can be removed with next release
-	# https://github.com/praat/praat/pull/2222
-	mv fon/LongSoundEditor_GUI{,_}.praat
 	../../praat --run runAllTests_batch.praat
 	../../praat_nogui --run runAllTests_batch.praat
 }

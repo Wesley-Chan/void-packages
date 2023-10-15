@@ -1,28 +1,28 @@
 # Template file for 'zoom'
 pkgname=zoom
-version=5.11.3.3882
+version=5.16.1.8561
 revision=1
 archs="x86_64"
-wrksrc=zoom
 create_wrksrc=yes
-hostmakedepends="rpmextract"
-depends="$(vopt_if systemqt 'qt5 qt5-graphicaleffects qt5-imageformats qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-script qt5-declarative')
- xcb-util-image xcb-util-keysyms"
+depends="libglvnd pulseaudio-utils"
 short_desc="Video Conferencing and Web Conferencing Service"
-maintainer="Daniel Santana <daniel@santana.tech>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="custom:Proprietary"
 homepage="https://zoom.us/"
 distfiles="https://cdn.zoom.us/prod/${version}/zoom_x86_64.rpm"
-checksum=160cbcc405754986009d43350a99eeb6b366358d5dc2c53c468df26135d7292a
+checksum=d869b7900d51ad87b027a908761936638c1a82b423466739ade5e6749f6c022a
 repository=nonfree
 noshlibprovides=yes
-noverifyrdeps=yes
 restricted=yes
 nopie=yes
 build_options="systemqt"
 desc_option_systemqt="Use system QT libraries"
 
 pre_install() {
+	# rm -rf opt/zoom/Qt/qml/QtQml/RemoteObjects
+	# rm -rf opt/zoom/Qt/qml/Qt/labs
+	# rm -rf opt/zoom/Qt/qml/QtQuick/Scene2D
+	# rm -rf opt/zoom/Qt/qml/QtQuick/Scene3D
 	if [ "${build_option_systemqt}" ]; then
 		rm -f opt/zoom/libQt5*.so{,.*}
 		rm -f opt/zoom/libicu*.so{,.*}

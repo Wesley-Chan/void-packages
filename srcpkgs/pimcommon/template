@@ -1,19 +1,20 @@
 # Template file for 'pimcommon'
 pkgname=pimcommon
-version=22.04.3
+version=23.08.2
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools python3 libxslt
  gettext kconfig kgendesignerplugin"
 makedepends="karchive-devel kcodecs-devel ki18n-devel kdbusaddons-devel knewstuff-devel
  kconfig-devel kiconthemes-devel kjobwidgets-devel kpimtextedit-devel akonadi-contacts-devel
- kxmlgui-devel kservice-devel kdesignerplugin-devel kimap-devel libkdepim-devel purpose-devel"
+ kxmlgui-devel kservice-devel kdesignerplugin-devel kimap-devel libkdepim-devel purpose-devel
+ ktextaddons-devel"
 short_desc="Common libraries for KDE PIM"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/pimcommon-${version}.tar.xz"
-checksum=29ab2b4f0d9e5a16df20751a4032b00411a3da9f43ea85127ad1155b181edaf6
+checksum=4e04e02072113c37b10a19bf1cf9e743890470bec383e259f6130c37cc7a55c7
 
 pimcommon-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} ${makedepends}"

@@ -1,9 +1,10 @@
 # Template file for 'curl'
 pkgname=curl
-version=7.84.0
-revision=2
+version=8.4.0
+revision=1
 build_style=gnu-configure
 configure_args="ac_cv_sizeof_off_t=8 --enable-threaded-resolver --enable-ipv6
+ --enable-websockets --with-random=/dev/urandom
  $(vopt_with rtmp librtmp) $(vopt_with gssapi) $(vopt_enable ldap) $(vopt_with gnutls)
  $(vopt_enable ldap ldaps) $(vopt_with ssh libssh2) $(vopt_with ssl) $(vopt_with zstd)
  --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt --without-libidn2
@@ -21,10 +22,10 @@ checkdepends="python3 stunnel nghttp2 impacket"
 short_desc="Client that groks URLs"
 maintainer="Érico Nogueira <ericonr@disroot.org>"
 license="MIT"
-homepage="https://curl.haxx.se"
-changelog="https://curl.haxx.se/changes.html#${version//./_}"
-distfiles="${homepage}/download/${pkgname}-${version}.tar.bz2"
-checksum=702fb26e73190a3bd77071aa146f507b9817cc4dfce218d2ab87f00cd3bc059d
+homepage="https://curl.se"
+changelog="https://curl.se/changes.html"
+distfiles="https://curl.se/download/curl-${version}.tar.gz"
+checksum=816e41809c043ff285e8c0f06a75a1fa250211bbfb2dc0a037eeef39f1a9e427
 build_options="gnutls gssapi ldap rtmp ssh ssl zstd"
 build_options_default="ssh ssl zstd"
 vopt_conflict ssl gnutls
@@ -82,12 +83,5 @@ libcurl-devel_package() {
 		vmove "usr/lib/*.a"
 		vmove "usr/lib/*.so"
 		vmove usr/lib/pkgconfig
-	}
-}
-
-chroot-curl_package() {
-	short_desc+=" - for build infra use"
-	pkg_install() {
-		vbin $DESTDIR/usr/bin/curl chroot-curl
 	}
 }

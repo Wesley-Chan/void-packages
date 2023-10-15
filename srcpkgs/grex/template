@@ -1,15 +1,15 @@
 # Template file for 'grex'
 pkgname=grex
-version=1.4.0
+version=1.4.4
 revision=1
 build_style=cargo
 short_desc="Tool for generating regular expressions from user-provided test cases"
-maintainer="Ishaan Bhimwal <ishaanbhimwal@protonmail.com>"
+maintainer="Bnyro <bnyro@tutanota.com>"
 license="Apache-2.0"
 homepage="https://github.com/pemistahl/grex"
 changelog="https://raw.githubusercontent.com/pemistahl/grex/main/RELEASE_NOTES.md"
 distfiles="https://github.com/pemistahl/grex/archive/v${version}.tar.gz"
-checksum=38610a97665a30a3b66519df41f979a39a0503d2e9ac6e1e3e3394ec305e7987
+checksum=9e1c56f3071a75629da4393c5fc736f2b822075b4a1219366b16a039c92f13d2
 
 post_install() {
 	vdoc README.md

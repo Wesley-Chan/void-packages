@@ -1,6 +1,6 @@
 # Template file for 'kpty'
 pkgname=kpty
-version=5.98.0
+version=5.110.0
 revision=1
 build_style=cmake
 configure_args="-DUTEMPTER_EXECUTABLE=/usr/lib/utempter/utempter"
@@ -11,7 +11,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kpty"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=9c0b54024c9aac7fb2f91201bbf1cd5e41d21a9ffbeed0cb63d9f2467b5b3d2b
+checksum=fa8ab4e0329a60e257cdff5bad5f3700e055d783e9f3b436f08afe14bfe6a9b3
 
 kpty-devel_package() {
 	short_desc+=" - development"

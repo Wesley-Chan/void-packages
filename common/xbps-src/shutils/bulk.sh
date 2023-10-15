@@ -54,7 +54,7 @@ bulk_sortdeps() {
 }
 
 bulk_build() {
-    local cmd="$1"
+    local bulk_build_cmd="$1"
     local NPROCS=$(($(nproc)*2))
     local NRUNNING=0
 
@@ -67,13 +67,13 @@ bulk_build() {
     fi
 
     # Compare installed pkg versions vs srcpkgs
-    case "$cmd" in
+    case "$bulk_build_cmd" in
     installed)
         bulk_sortdeps $(xbps-checkvers -f '%n' -I -D "$XBPS_DISTDIR")
         return $?
         ;;
     local)
-        bulk_sortdeps $(xbps-checkvers -f '%n' -i -R "${XBPS_REPOSITORY}" -R "${XBPS_REPOSITORY}/nonfree" -D "$XBPS_DISTDIR")
+        bulk_sortdeps $(xbps-checkvers -f '%n' -i -R "${XBPS_REPOSITORY}/bootstrap" -R "${XBPS_REPOSITORY}" -R "${XBPS_REPOSITORY}/nonfree" -D "$XBPS_DISTDIR")
         return $?
         ;;
     esac
@@ -97,9 +97,9 @@ bulk_build() {
 }
 
 bulk_update() {
-    local cmd="$1" pkgs f rval
+    local bulk_update_cmd="$1" pkgs f rval
 
-    pkgs="$(bulk_build "${cmd}")"
+    pkgs="$(bulk_build "${bulk_update_cmd}")"
     [[ -z $pkgs ]] && return 0
 
     msg_normal "xbps-src: the following packages must be rebuilt and updated:\n"
@@ -119,9 +119,9 @@ bulk_update() {
             msg_error "xbps-src: failed to build $pkgver pkg!\n"
         fi
     done
-    if [ -n "$pkgs" -a "$cmd" == installed ]; then
+    if [ -n "$pkgs" -a "$bulk_update_cmd" == installed ]; then
         echo
         msg_normal "xbps-src: updating your system, confirm to proceed...\n"
-        ${XBPS_SUCMD} "xbps-install --repository=$XBPS_REPOSITORY --repository=$XBPS_REPOSITORY/nonfree -u ${pkgs//[$'\n']/ }" || return 1
+        ${XBPS_SUCMD} "xbps-install --repository=$XBPS_REPOSITORY/bootstrap --repository=$XBPS_REPOSITORY --repository=$XBPS_REPOSITORY/nonfree -u ${pkgs//[$'\n']/ }" || return 1
     fi
 }

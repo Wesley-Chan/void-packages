@@ -2,7 +2,6 @@
 pkgname=b43-firmware-classic
 version=5.100.138
 revision=2
-wrksrc="broadcom-wl-${version}"
 hostmakedepends="b43-fwcutter"
 short_desc="Firmware for Broadcom B43 wireless (trusted release)"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -17,4 +16,5 @@ restricted=yes
 do_install() {
 	vmkdir usr/lib/firmware
 	b43-fwcutter -w ${DESTDIR}/usr/lib/firmware linux/wl_apsta.o
+	vdoc "${FILESDIR}/README.voidlinux"
 }

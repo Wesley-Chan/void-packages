@@ -1,6 +1,6 @@
 # Template file for 'padthv1'
 pkgname=padthv1
-version=0.9.26
+version=0.9.32
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config qt5-host-tools qt5-qmake"
@@ -11,5 +11,5 @@ maintainer="Duncaen <duncaen@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://padthv1.sourceforge.io/"
 changelog="https://github.com/rncbc/padthv1/raw/master/ChangeLog"
-distfiles="https://download.sourceforge.net/padthv1/padthv1-${version}.tar.gz"
-checksum=813f818d6c6c66b403937c66a7729ea85226eab17db0992334441613c903ef0a
+distfiles="${SOURCEFORGE_SITE}/padthv1/padthv1-${version}.tar.gz"
+checksum=f55cfd15556ac998996516e2582fa830748fd113b6ef29bb1e8e2efc3ef3ed62

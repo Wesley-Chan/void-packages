@@ -1,11 +1,10 @@
 # Template file for 'tea'
 pkgname=tea
-version=0.8.0
-revision=2
-wrksrc=$pkgname
+version=0.9.2
+revision=3
 build_style=go
 build_helper=qemu
-go_import_path=code.gitea.io/tea
+go_import_path="code.gitea.io/tea"
 depends="git"
 short_desc="Command line tool to interact with Gitea"
 maintainer="chili-b <dexter.gaonshatford@gmail.com>"
@@ -13,7 +12,7 @@ license="MIT"
 homepage="https://gitea.com/gitea/tea"
 changelog="https://gitea.com/gitea/tea/raw/branch/master/CHANGELOG.md"
 distfiles="https://gitea.com/gitea/tea/archive/v${version}.tar.gz"
-checksum=6c73c0a7b66cdfd1e5a302257d54df06a3a41eb9bdbfeb547966db431ae23b23
+checksum=b5a944de8db7d5af4aa87e9640261c925f094d2b6d26c4faf2701773acab219b
 
 post_install() {
 	vcompletion contrib/autocomplete.sh bash

@@ -1,6 +1,6 @@
 # Template file for 'kidentitymanagement'
 pkgname=kidentitymanagement
-version=22.04.3
+version=23.08.2
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools python3
@@ -12,7 +12,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/pim/kidentitymanagement"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=1cb598d9feafbc742235840d1240ce573ea02a170edeafbbfbedd49629ef317c
+checksum=134bcb3d958fcbd94b66e023223a04b15f4053023f8d80bed96e1d6bf6c959fe
 
 kidentitymanagement-devel_package() {
 	short_desc+=" - development"

@@ -1,6 +1,6 @@
 # Template file for 'xdaliclock'
 pkgname=xdaliclock
-version=2.47
+version=2.48
 revision=1
 build_wrksrc=X11
 build_style=gnu-configure
@@ -11,10 +11,11 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="X11"
 homepage="http://www.jwz.org/xdaliclock/"
 distfiles="http://www.jwz.org/xdaliclock/xdaliclock-${version}.tar.gz"
-checksum=d4992ff62ba5bf263e6f92abc83afcb3ebfc2d4f7985c562ecf250b0bd6b50be
+checksum=0598aa8d3492020bd3ff9e8e24370a878a433fdbaa561479702c7cf47fb914b4
 
 do_install() {
 	make install install_prefix=${DESTDIR}	
+	rm "${DESTDIR}/usr/share/glib-2.0/schemas/gschemas.compiled"
 	sed -n '/Jamie/,/warranty/p' xdaliclock.c > LICENSE
 	vlicense LICENSE
 }

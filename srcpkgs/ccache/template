@@ -1,26 +1,28 @@
 # Template file for 'ccache'
 pkgname=ccache
-version=4.6.2
+version=4.8.2
 revision=1
 build_style=cmake
-configure_args="-DENABLE_TESTING=OFF -DREDIS_STORAGE_BACKEND=OFF"
-hostmakedepends="perl"
-makedepends="libzstd-devel zlib-devel"
+configure_args="-DENABLE_TESTING=OFF -DREDIS_STORAGE_BACKEND=OFF
+ -DENABLE_DOCUMENTATION=OFF"
+makedepends="libzstd-devel"
 short_desc="Fast C/C++ Compiler Cache"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="GPL-3.0-or-later"
-homepage="https://ccache.samba.org/"
+homepage="https://ccache.dev"
 changelog="https://ccache.dev/releasenotes.html"
-distfiles="https://github.com/ccache/ccache/releases/download/v${version}/${pkgname}-${version}.tar.xz"
-checksum=789a2435d7fde2eaef5ec7b3ecf2366e546f764253e9999fdf008d2dd7f3b10c
+distfiles="https://github.com/ccache/ccache/releases/download/v${version}/ccache-${version}.tar.xz
+ https://github.com/ccache/ccache/releases/download/v${version}/ccache-${version}-linux-x86_64.tar.xz"
+checksum="3d3fb3f888a5b16c4fa7ee5214cca76348afd6130e8443de5f6f2424f2076a49
+ 0b33f39766fe9db67f40418aed6a5b3d7b2f4f7fab025a8213264b77a2d0e1b1"
 
 if [ -n "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -DENABLE_TESTING=ON"
 fi
 
-if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
-	makedepends+=" libatomic-devel"
-fi
+post_extract() {
+	mv ccache-${version}/* .
+}
 
 post_install() {
 	vmkdir usr/lib/ccache/bin
@@ -43,5 +45,5 @@ post_install() {
 		done
 	done
 	# pregenerated manpage to avoid bringing ruby into the build
-	vman ${FILESDIR}/ccache.1
+	vman ccache-${version}-linux-x86_64/ccache.1
 }

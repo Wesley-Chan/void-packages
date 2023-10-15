@@ -1,21 +1,20 @@
 # Template file for 'qemu-user-static'
 # This package should be updated together with qemu
 pkgname=qemu-user-static
-version=7.0.0
-revision=2
-wrksrc="qemu-${version}"
+version=8.1.0
+revision=1
 build_style=configure
 configure_args="--prefix=/usr --sysconfdir=/etc --libexecdir=/usr/libexec
- --disable-kvm --disable-vnc-png --disable-virtfs --disable-fdt --disable-seccomp
- --enable-linux-user --disable-system --static"
-hostmakedepends="pkg-config perl python3 ninja"
-makedepends="dtc-devel libglib-devel pixman-devel libuuid-devel"
+ --disable-kvm --disable-png --disable-virtfs --disable-fdt --disable-seccomp
+ --enable-linux-user --disable-system --static --disable-pie"
+hostmakedepends="flex glib-devel pkg-config perl python3 ninja"
+makedepends="dtc-devel glib-devel pixman-devel libuuid-devel"
 short_desc="QEMU User-mode emulators (statically compiled)"
 maintainer="Orphaned <orphan@voidlinux.org>"
-license="GPL-2.0-or-later, LGPL-2.1-or-later"
+license="GPL-2.0-only, LGPL-2.1-only"
 homepage="https://www.qemu.org"
 distfiles="https://wiki.qemu.org/download/qemu-${version}.tar.bz2"
-checksum=a83032c6ce0dba35479610a4e11a7d8c4a6dffb17152653c183eec3c58616d4e
+checksum=53a2388f4f67d03e94ed7fe192d8828e64c535fadf7bf9dd0bc1d2091eedf624
 
 _fmts="aarch64 aarch64_be alpha arm armeb cris hppa i386 m68k microblaze
  microblazeel mips mipsel mips64 mips64el mipsn32 mipsn32el or1k
@@ -111,10 +110,6 @@ for _fmt in $_fmts; do
 done
 
 binfmts="${binfmts%?}"
-
-pre_configure() {
-	unset CPP
-}
 
 post_install() {
 	# Remove unneeded stuff.

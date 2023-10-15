@@ -1,24 +1,17 @@
 # Template file for 'tzutils'
 pkgname=tzutils
-version=2022d
+version=2023c
 revision=1
 bootstrap=yes
-wrksrc="tzdb-${version}"
 short_desc="Time zone and daylight-saving time utilities"
 maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="Public Domain"
 homepage="https://www.iana.org/time-zones"
 distfiles="https://www.iana.org/time-zones/repository/releases/tzdb-${version}.tar.lz"
-checksum=60d1d7ab9f230fcb3ab32a7576d667c87a03d8825009dd099d232ad84ce1c835
+checksum=08fd090f1a16d522ae4e9247445056f4155002239e5be760b31ba0376d2e632c
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends="tzutils"
-fi
-
-if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
-	# enforce 64-bit time_t for Y2038
-	CFLAGS="-Dtime_tz=int64_t"
-	license+=", BSD-3-Clause"
 fi
 
 do_build() {
@@ -29,7 +22,7 @@ do_build() {
 }
 
 do_check() {
-	make ${makejobs} check
+	make check
 }
 
 do_install() {
